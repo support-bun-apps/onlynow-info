@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>プライバシーポリシー - OnlyNow</title>
+    <title>Privacy Policy - OnlyNow</title>
     <style>
+        * { box-sizing: border-box; }
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             line-height: 1.7;
@@ -20,27 +21,36 @@
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
+        .lang-switcher {
+            text-align: right;
+            margin-bottom: 24px;
+        }
+        .lang-switcher button {
+            background: none;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 6px 14px;
+            font-size: 13px;
+            cursor: pointer;
+            margin-left: 6px;
+            color: #555;
+        }
+        .lang-switcher button.active {
+            background: #333;
+            color: #fff;
+            border-color: #333;
+        }
         h1 {
             font-size: 24px;
             border-bottom: 2px solid #333;
             padding-bottom: 10px;
             margin-bottom: 30px;
         }
-        h2 {
-            font-size: 18px;
-            margin-top: 30px;
-            color: #000;
-        }
-        p, li {
-            font-size: 15px;
-            color: #555;
-        }
-        ul {
-            padding-left: 20px;
-        }
-        li {
-            margin-bottom: 8px;
-        }
+        h2 { font-size: 18px; margin-top: 30px; color: #000; }
+        p, li { font-size: 15px; color: #555; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 8px; }
+        a { color: #333; }
         .footer {
             margin-top: 50px;
             font-size: 13px;
@@ -57,12 +67,19 @@
             color: #555;
             line-height: 1.8;
         }
+        .hidden { display: none; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>OnlyNow プライバシーポリシー</h1>
+<div class="container">
+    <div class="lang-switcher">
+        <button id="btn-ja" class="active" onclick="setLang('ja')">日本語</button>
+        <button id="btn-en" onclick="setLang('en')">English</button>
+    </div>
 
+    <!-- 日本語 -->
+    <div id="content-ja">
+        <h1>OnlyNow プライバシーポリシー</h1>
         <p>個人開発者BunDev（以下「当方」）は、本アプリケーション「OnlyNow」（以下「本アプリ」）におけるユーザーの情報の取り扱いについて、以下の通りプライバシーポリシーを定めます。</p>
 
         <h2>1. 基本方針</h2>
@@ -70,9 +87,9 @@
 
         <h2>2. 取得する情報と利用目的</h2>
         <ul>
-            <li><strong>タスクおよび履歴データ</strong>：アプリ内で入力されたタスク内容や完了履歴は、ユーザーの端末内（Roomデータベース）にのみ保存されます。これらはアプリの機能提供（タスク表示・管理）のために使用されます。</li>
+            <li><strong>タスクおよび履歴データ</strong>：アプリ内で入力されたタスク内容や完了履歴は、ユーザーの端末内（Roomデータベース）にのみ保存されます。これらはアプリの機能提供のために使用されます。</li>
             <li><strong>設定データ</strong>：タイマー時間や通知間隔、テーマ設定などは端末内（DataStore）に保存されます。</li>
-            <li><strong>音声入力データ</strong>：音声認識機能を使用する際、Android標準の <strong>SpeechRecognizer API</strong> を使用します。音声データはテキスト変換のため、Googleのサーバーに送信され処理される場合があります。当方が音声データ自体を収集・記録・二次利用することはありません。</li>
+            <li><strong>音声入力データ</strong>：音声認識機能を使用する際、Android標準の <strong>SpeechRecognizer API</strong> を使用します。音声データはテキスト変換のためGoogleのサーバーに送信され処理される場合があります。当方が音声データ自体を収集・記録・二次利用することはありません。</li>
         </ul>
 
         <h2>3. 権限の使用について</h2>
@@ -83,24 +100,22 @@
             <li><strong>アラーム (SCHEDULE_EXACT_ALARM)</strong>：設定時間に正確に通知を作動させるため。</li>
             <li><strong>バイブレーション (VIBRATE)</strong>：タイマー完了時およびリマインダー通知時の振動通知のため。</li>
             <li><strong>起動完了受信 (RECEIVE_BOOT_COMPLETED)</strong>：端末の再起動後にリマインダー通知のスケジュールを自動復元するため。</li>
-            <li><strong>インターネット (INTERNET)</strong>：プレミアム機能の購入および購入履歴の復元のため、Google Play Billingとの通信、ならびに後述するクラッシュレポートの送信に使用します。ユーザーの個人情報を当方が収集・送信することはありません。</li>
+            <li><strong>インターネット (INTERNET)</strong>：プレミアム機能の購入・復元のためのGoogle Play Billingとの通信、およびクラッシュレポートの送信に使用します。ユーザーの個人情報を当方が収集・送信することはありません。</li>
         </ul>
 
         <h2>4. 第三者サービスによるデータ収集</h2>
-
         <p><strong>（1）Google Play Billing（決済）</strong><br>
-        本アプリは、プレミアム機能（テーマカラー・完了エフェクト・ホーム画面ウィジェット・カスタムサウンド）の提供にあたり「Google Play Billing」を利用しています。決済に関する情報（クレジットカード番号等）はGoogle社によって直接管理され、当方がユーザーの決済詳細情報にアクセスすることはありません。</p>
+        プレミアム機能の提供に「Google Play Billing」を利用しています。決済情報はGoogle社によって管理され、当方が決済詳細情報にアクセスすることはありません。</p>
 
         <p><strong>（2）Firebase Crashlytics・Firebase Analytics（品質改善）</strong><br>
-        本アプリは、アプリの安定性向上および利用状況の把握を目的として、Google LLC が提供する「Firebase Crashlytics」および「Firebase Analytics」を使用しています。これらのサービスにより、以下の情報が自動的に収集され、Googleのサーバーに送信される場合があります。</p>
+        アプリの安定性向上および利用状況の把握を目的として、Google LLCが提供する「Firebase Crashlytics」および「Firebase Analytics」を使用しています。以下の情報が自動的に収集される場合があります。</p>
         <ul>
-            <li>アプリがクラッシュした際のエラー情報（スタックトレース、端末モデル、OSバージョン等）</li>
+            <li>クラッシュ時のエラー情報（スタックトレース、端末モデル、OSバージョン等）</li>
             <li>アプリの起動回数や画面遷移などの匿名化された利用統計情報</li>
         </ul>
-        <p>収集された情報は、アプリの不具合修正および品質向上のためにのみ使用されます。ユーザーの氏名・連絡先・入力したタスク内容等の個人を特定できる情報は収集されません。Firebase のプライバシーポリシーについては、<a href="https://firebase.google.com/support/privacy" target="_blank">Firebase のプライバシーページ</a>をご参照ください。</p>
+        <p>収集された情報は不具合修正および品質向上のためにのみ使用されます。個人を特定できる情報は収集されません。詳細は<a href="https://firebase.google.com/support/privacy" target="_blank">FirebaseのPrivacyページ</a>をご参照ください。</p>
 
         <h2>5. お問い合わせ窓口</h2>
-        <p>本ポリシー、または情報の取り扱いに関するお問い合わせは、以下の窓口までご連絡ください。</p>
         <div class="contact-box">
             <strong>BunDev</strong><br>
             住所：〒105-0013 東京都港区浜松町２丁目２番１５号 浜松町ダイヤビル２Ｆ<br>
@@ -108,10 +123,69 @@
         </div>
 
         <div class="footer">
-            制定日：2026年5月22日<br>
-            最終更新日：2026年6月1日<br>
+            制定日：2026年5月22日　最終更新日：2026年6月1日<br>
             © 2026 BunDev
         </div>
     </div>
+
+    <!-- English -->
+    <div id="content-en" class="hidden">
+        <h1>OnlyNow Privacy Policy</h1>
+        <p>BunDev ("we" or "us"), an independent developer, has established this Privacy Policy regarding the handling of user information in the application "OnlyNow" ("the App").</p>
+
+        <h2>1. Basic Policy</h2>
+        <p>We place the highest priority on protecting user privacy and handle only the minimum data necessary to improve the App's functionality and quality. As a general rule, personal information entered by users is not transmitted to or stored on our servers.</p>
+
+        <h2>2. Information Collected and Purpose</h2>
+        <ul>
+            <li><strong>Task and History Data</strong>: Task content and completion history entered in the App are stored only on the user's device (Room database) and are used solely to provide App functionality.</li>
+            <li><strong>Settings Data</strong>: Timer duration, notification intervals, theme settings, etc. are stored on the device (DataStore).</li>
+            <li><strong>Voice Input Data</strong>: When using the voice input feature, the Android standard <strong>SpeechRecognizer API</strong> is used. Voice data may be sent to Google's servers for text conversion. We do not collect, record, or make secondary use of voice data.</li>
+        </ul>
+
+        <h2>3. Permissions</h2>
+        <p>The App uses the following permissions to provide its features. Information obtained is never shared with third parties.</p>
+        <ul>
+            <li><strong>Microphone (RECORD_AUDIO)</strong>: For voice task input.</li>
+            <li><strong>Notifications (POST_NOTIFICATIONS)</strong>: To send task reminder notifications.</li>
+            <li><strong>Alarm (SCHEDULE_EXACT_ALARM)</strong>: To trigger notifications at the exact scheduled time.</li>
+            <li><strong>Vibration (VIBRATE)</strong>: For vibration alerts on timer completion and reminders.</li>
+            <li><strong>Boot Completed (RECEIVE_BOOT_COMPLETED)</strong>: To automatically restore reminder schedules after device restart.</li>
+            <li><strong>Internet (INTERNET)</strong>: For communication with Google Play Billing to purchase and restore premium features, and to send crash reports. We do not collect or transmit users' personal information.</li>
+        </ul>
+
+        <h2>4. Third-Party Services</h2>
+        <p><strong>(1) Google Play Billing (Payments)</strong><br>
+        The App uses Google Play Billing for premium features. Payment information is managed by Google and we do not have access to payment details.</p>
+
+        <p><strong>(2) Firebase Crashlytics &amp; Firebase Analytics (Quality Improvement)</strong><br>
+        We use Firebase Crashlytics and Firebase Analytics provided by Google LLC to improve app stability and understand usage. The following information may be automatically collected:</p>
+        <ul>
+            <li>Error information on crashes (stack traces, device model, OS version, etc.)</li>
+            <li>Anonymized usage statistics such as app launches and screen transitions</li>
+        </ul>
+        <p>Collected information is used solely for bug fixes and quality improvement. No personally identifiable information is collected. For details, see <a href="https://firebase.google.com/support/privacy" target="_blank">Firebase's Privacy page</a>.</p>
+
+        <h2>5. Contact</h2>
+        <div class="contact-box">
+            <strong>BunDev</strong><br>
+            Email: support.bun.apps@gmail.com
+        </div>
+
+        <div class="footer">
+            Established: May 22, 2026 &nbsp;|&nbsp; Last Updated: June 1, 2026<br>
+            © 2026 BunDev
+        </div>
+    </div>
+</div>
+
+<script>
+function setLang(lang) {
+    document.getElementById('content-ja').classList.toggle('hidden', lang !== 'ja');
+    document.getElementById('content-en').classList.toggle('hidden', lang !== 'en');
+    document.getElementById('btn-ja').classList.toggle('active', lang === 'ja');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+}
+</script>
 </body>
 </html>
